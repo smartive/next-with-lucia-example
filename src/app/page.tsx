@@ -1,4 +1,5 @@
 import { LoginButton } from "@/components/login-button";
+import { LogoutButton } from "@/components/logout-button";
 import { getServerSession } from "@/utils/auth";
 
 export default async function Home() {
@@ -17,7 +18,11 @@ export default async function Home() {
       </div>
 
       {session.user ? (
-        <h1>Logged in</h1>
+        <div className="flex flex-col pt-2 gap-4">
+          <h1>Logged in</h1>
+          <h2>{session.user.fullName}</h2>
+          <LogoutButton />
+        </div>
       ) : (
         <div className="flex flex-col pt-2 gap-4">
           <h1>Not logged in</h1>
