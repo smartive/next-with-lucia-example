@@ -16,12 +16,12 @@ const IGNORE_PATHS = ["/api", "/_next", "/backend"];
 export const LOCALSTORAGE_TOKEN_REFRESH_KEY = "token-refresh-in-progress";
 export const LOCALSTORAGE_LOGOUT_KEY = "logout-in-progress";
 
-export const isInvalidSessionState = (sessionState?: SessionState) =>
+const isInvalidSessionState = (sessionState?: SessionState) =>
   sessionState?.error ||
   (sessionState?.accessTokenExpiresAt &&
     sessionState.accessTokenExpiresAt - Date.now() < 0);
 
-export const performClientTokenRefreshInBackground = async () => {
+const performClientTokenRefreshInBackground = async () => {
   if (!localStorage.getItem(LOCALSTORAGE_TOKEN_REFRESH_KEY)) {
     let success;
     try {
@@ -64,7 +64,7 @@ export const performClientTokenRefreshInBackground = async () => {
   return true;
 };
 
-export const performLogout = async () => {
+const performLogout = async () => {
   if (!localStorage.getItem(LOCALSTORAGE_LOGOUT_KEY)) {
     localStorage.setItem(LOCALSTORAGE_LOGOUT_KEY, "true");
     await logout(false);

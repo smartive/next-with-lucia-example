@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "deps": "cross-env COMPOSE_PROJECT_NAME=lucia-example docker-compose up -d",
+    "deps": "cross-env COMPOSE_PROJECT_NAME=lucia_example docker-compose up -d",
+    "deps:stop": "cross-env COMPOSE_PROJECT_NAME=lucia_example docker-compose stop",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

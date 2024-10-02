@@ -2,7 +2,7 @@ import Redis from "ioredis";
 
 let redis: Redis;
 
-export const KEY_PREFIX_NEXT = `next:${process.env.APP_HOSTNAME}:`;
+export const KEY_PREFIX_NEXT = `next:lucia-example:`;
 export const KEY_PREFIX_NEXT_SESSION = `${KEY_PREFIX_NEXT}session:`;
 
 export const getRedisClient = async () => {
