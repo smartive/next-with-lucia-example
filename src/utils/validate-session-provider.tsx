@@ -6,7 +6,6 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { SessionState } from "./auth";
 import { login, logout, refetchSessionFromServer } from "./session-actions";
 import { useSession } from "./use-session";
-// import { useAuthFlowState } from '@/hooks/use-auth-flow-state';
 
 type Props = {
   sessionState?: SessionState;
@@ -67,7 +66,7 @@ const performClientTokenRefreshInBackground = async () => {
 const performLogout = async () => {
   if (!localStorage.getItem(LOCALSTORAGE_LOGOUT_KEY)) {
     localStorage.setItem(LOCALSTORAGE_LOGOUT_KEY, "true");
-    await logout(false);
+    await logout();
     localStorage.removeItem(LOCALSTORAGE_LOGOUT_KEY);
   } else {
     (window as any).session = {};

@@ -60,7 +60,7 @@ export async function login(promptNone?: boolean, sso?: boolean) {
   }
 }
 
-export async function logout(deepLogout: boolean, redirectUri?: string) {
+export async function logout() {
   const { session } = await getServerSession();
   if (!session) {
     return {
@@ -77,18 +77,6 @@ export async function logout(deepLogout: boolean, redirectUri?: string) {
     sessionCookie.attributes
   );
 
-  if (deepLogout) {
-    const redirectUrl = session?.idToken
-      ? `${
-          process.env.NEXT_PUBLIC_MIGROS_LOGIN_URL
-        }/oauth2/logout?id_token_hint=${
-          session.idToken
-        }&post_logout_redirect_uri=${
-          redirectUri || process.env.NEXT_PUBLIC_FULL_APP_URL!
-        }`
-      : process.env.NEXT_PUBLIC_FULL_APP_URL!;
-    redirect(redirectUrl);
-  }
   revalidateTag("user-session");
 }
 

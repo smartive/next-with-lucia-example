@@ -204,10 +204,6 @@ export const createSessionFromCode = async (
       authenticateWith: "request_body",
     });
   const userId = await fetchAndUpdateUser(access_token);
-
-  console.log("expires_in", expires_in);
-  console.log("userId", userId);
-
   return await lucia.createSession(userId, {
     accessToken: access_token,
     refreshToken: refresh_token,
